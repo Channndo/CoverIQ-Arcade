@@ -1,0 +1,24 @@
+.coming-soon-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(5, 5, 12, 0.55);
+  backdrop-filter: blur(2px);
+  z-index: 2;
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out-expo);
+  pointer-events: none;
+}
+
+.game-card:hover .coming-soon-overlay {
+  opacity: 1;
+}
+
+.coming-soon-overlay__text {
+  color: var(--omni-neon-cyan);
+  text-shadow: 0 0 12px var(--omni-neon-cyan);
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--omni-neon-cyan);
+}

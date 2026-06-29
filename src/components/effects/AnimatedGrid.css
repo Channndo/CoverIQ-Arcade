@@ -1,0 +1,27 @@
+.animated-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.animated-grid__plane {
+  position: absolute;
+  bottom: -20%;
+  left: -50%;
+  width: 200%;
+  height: 80%;
+  background-image:
+    linear-gradient(rgba(0, 240, 255, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.12) 1px, transparent 1px);
+  background-size: 48px 48px;
+  transform: perspective(500px) rotateX(65deg);
+  transform-origin: center bottom;
+  animation: omni-grid-scroll 4s linear infinite;
+  mask-image: linear-gradient(to top, black 20%, transparent 80%);
+}
+
+.animated-grid--static .animated-grid__plane {
+  animation: none;
+}

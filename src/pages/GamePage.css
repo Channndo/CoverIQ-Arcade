@@ -1,0 +1,106 @@
+.game-page {
+  padding: var(--space-2xl) 0 var(--space-3xl);
+}
+
+.game-page--missing {
+  text-align: center;
+  padding-top: var(--space-3xl);
+}
+
+.game-page--missing h1 {
+  margin-bottom: var(--space-xl);
+}
+
+.game-page__back {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  color: var(--omni-text-muted);
+  margin-bottom: var(--space-xl);
+  text-decoration: none;
+}
+
+.game-page__back:hover {
+  color: var(--omni-neon-cyan);
+}
+
+.game-page__layout {
+  display: grid;
+  gap: var(--space-2xl);
+}
+
+@media (min-width: 768px) {
+  .game-page__layout {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+
+  .game-page__layout--flagship {
+    grid-template-columns: 1.2fr 1fr;
+  }
+}
+
+.game-page__cabinet {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 2px solid var(--omni-border-strong);
+}
+
+.game-page__overlay {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--omni-neon-pink);
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--omni-neon-pink);
+  background: rgba(5, 5, 12, 0.8);
+}
+
+.game-page__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: var(--space-md);
+}
+
+.game-page__title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 0.5rem;
+}
+
+.game-page__tagline {
+  font-family: var(--font-display);
+  color: var(--omni-neon-cyan);
+  margin-bottom: var(--space-lg);
+}
+
+.game-page__description {
+  color: var(--omni-text-muted);
+  line-height: 1.6;
+  margin-bottom: var(--space-xl);
+}
+
+.game-page__meta {
+  display: grid;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.game-page__meta dt {
+  font-family: var(--font-pixel);
+  font-size: 0.45rem;
+  color: var(--omni-text-dim);
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.game-page__meta dd {
+  color: var(--omni-text);
+}
+
+.game-page__meta code {
+  color: var(--omni-neon-purple);
+  font-family: var(--font-display);
+}

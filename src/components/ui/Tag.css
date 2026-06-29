@@ -1,0 +1,13 @@
+.omni-tag {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--tag-color, var(--omni-text-muted));
+  border: 1px solid color-mix(in srgb, var(--tag-color, var(--omni-text-muted)) 40%, transparent);
+}

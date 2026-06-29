@@ -1,0 +1,55 @@
+:root {
+  /* Core palette */
+  --omni-bg-deep: #05050c;
+  --omni-bg: #0a0a14;
+  --omni-bg-elevated: #12121f;
+  --omni-bg-card: #16162a;
+  --omni-surface: #1c1c35;
+
+  /* Neon spectrum */
+  --omni-neon-pink: #ff2d95;
+  --omni-neon-cyan: #00f0ff;
+  --omni-neon-purple: #b24bff;
+  --omni-neon-green: #00ff88;
+  --omni-neon-yellow: #ffe156;
+  --omni-neon-orange: #ff6b00;
+
+  /* Text */
+  --omni-text: #e8e8f0;
+  --omni-text-muted: #8888aa;
+  --omni-text-dim: #555570;
+
+  /* Borders & glow */
+  --omni-border: rgba(0, 240, 255, 0.2);
+  --omni-border-strong: rgba(0, 240, 255, 0.45);
+  --omni-glow-cyan: 0 0 20px rgba(0, 240, 255, 0.4);
+  --omni-glow-pink: 0 0 20px rgba(255, 45, 149, 0.4);
+  --omni-glow-purple: 0 0 24px rgba(178, 75, 255, 0.35);
+
+  /* Typography */
+  --font-display: 'Orbitron', system-ui, sans-serif;
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-body: 'Rajdhani', system-ui, sans-serif;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+
+  /* Layout */
+  --nav-height: 4rem;
+  --max-width: 1280px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 600ms;
+}

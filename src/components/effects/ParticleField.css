@@ -1,0 +1,24 @@
+.particle-field {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  bottom: -10%;
+  border-radius: 50%;
+  animation: omni-particle-drift linear infinite;
+}
+
+.particle--cyan {
+  background: var(--omni-neon-cyan);
+  box-shadow: 0 0 6px var(--omni-neon-cyan);
+}
+
+.particle--pink {
+  background: var(--omni-neon-pink);
+  box-shadow: 0 0 6px var(--omni-neon-pink);
+}

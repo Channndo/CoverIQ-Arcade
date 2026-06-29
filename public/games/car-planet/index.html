@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Car Planet</title>
+<link rel="stylesheet" href="styles.css?v=ryan-dialogue-fix-2">
+</head>
+<body>
+<div id="game-wrapper">
+    <div id="game-screen" class="control-board-screen-black">
+        <div id="title-screen">
+            <div class="title-text">CAR PLANET</div>
+            <div id="title-menu">
+                <button type="button" id="title-continue" class="title-btn" style="display:none" onclick="continueGameFromTitle(event)">CONTINUE</button>
+                <button type="button" id="title-new-game" class="title-btn" onclick="startNewGameFromTitle(event)">NEW GAME</button>
+            </div>
+        </div>
+        <div id="intro-screen">
+            <div id="choice-box"><button class="retro-btn" onclick="selectGender('Boy')">BOY</button><button class="retro-btn" onclick="selectGender('Girl')">GIRL</button></div>
+            <div id="name-box"><input type="text" id="player-name-input" class="retro-input" maxlength="10" placeholder="NAME?"><button class="retro-btn" style="text-align: center;" onclick="confirmName()">CONFIRM</button></div>
+            <div id="rival-name-box"><input type="text" id="rival-name-input" class="retro-input" maxlength="10" placeholder="RIVAL'S NAME?"><button class="retro-btn" style="text-align: center;" onclick="confirmRivalName()">CONFIRM</button></div>
+        </div>
+        <canvas id="gameCanvas" width="320" height="240"></canvas>
+        <div id="dialogue-container">
+            <div id="portrait-box"><canvas id="portrait-canvas" width="64" height="64"></canvas></div>
+            <div id="dialogue-box" onclick="advanceDialogue()">
+                <div id="dialogue-name">RICK SELLERS</div><div id="dialogue-text">...</div><div class="blinking-arrow" id="diag-arrow">▼</div>
+                <div id="choice-buttons"><button class="choice-btn" onclick="makeChoice('YES', event)">YES</button><button class="choice-btn" onclick="makeChoice('NO', event)">NO</button></div>
+            </div>
+        </div>
+        <div id="start-menu" class="menu-frame-classic">
+            <div id="menu-panel-main" class="menu-panel">
+                <div id="menu-header"></div>
+                <div class="menu-item" onclick="toggleStartMenu()"><span>RESUME</span><span class="menu-arrow">▶</span></div>
+                <div class="menu-item" onclick="showStatusMenu()"><span>STATUS</span><span class="menu-arrow">▶</span></div>
+                <div class="menu-item" onclick="showRosterMenu()"><span>ROSTER</span><span class="menu-arrow">▶</span></div>
+                <div class="menu-item" onclick="alert('TOOLS screen coming next.')"><span>TOOLS</span><span class="menu-arrow">▶</span></div>
+                <div class="menu-item" onclick="saveGame()"><span>SAVE GAME</span><span class="menu-arrow">▶</span></div>
+                <div class="menu-item" onclick="openOptionsMenu()"><span>OPTIONS</span><span class="menu-arrow">▶</span></div>
+                <div class="menu-item" onclick="alert('v1.0.23 - Options & menu frames')"><span>INFO</span><span class="menu-arrow">▶</span></div>
+                <div id="menu-footer">CAR PLANET MENU</div>
+            </div>
+            <div id="menu-panel-options" class="menu-panel" style="display:none;">
+                <div id="options-header">OPTIONS</div>
+                <div class="menu-item" onclick="cycleMenuFrame()"><span>MENU FRAME</span><span class="menu-frame-value" id="menu-frame-label">CLASSIC</span></div>
+                <div class="menu-item" onclick="cycleControlBoard(event)"><span>CONTROL BOARD</span><span class="menu-frame-value" id="control-board-label">BLACK</span></div>
+                <div class="menu-item" onclick="cycleMusic(event)"><span>MUSIC</span><span class="menu-frame-value" id="music-label">ON</span></div>
+                <div class="menu-item menu-item-warn" onclick="openResetGameConfirm()"><span>RESET GAME</span><span class="menu-arrow">▶</span></div>
+                <div class="menu-item" onclick="closeOptionsMenu()"><span>BACK</span><span class="menu-arrow">◀</span></div>
+                <div id="menu-footer">OPTIONS</div>
+            </div>
+        </div>
+    </div>
+    <div id="controls" class="control-board-black">
+        <div id="device-brand" aria-hidden="true">
+            <img src="assets/omni-games-logo.png" alt="" decoding="async" />
+        </div>
+        <div class="dpad"><div class="touch-btn" id="btn-up">↑</div><div class="touch-btn" id="btn-left">←</div><div class="touch-btn" id="btn-right">→</div><div class="touch-btn" id="btn-down">↓</div></div>
+        <div class="touch-btn" id="btn-start">START</div>
+        <div class="action"><div class="touch-btn" id="btn-b">B</div><div class="touch-btn" id="btn-a">A</div></div>
+    </div>
+</div>
+
+<script src="js/config.js?v=ryan-dialogue-fix-2"></script>
+<script src="js/state.js?v=ryan-dialogue-fix-2"></script>
+<script src="js/maps/generate.js?v=ryan-dialogue-fix-2"></script>
+<script src="js/maps/dealership-data.js?v=ryan-dialogue-fix-2"></script>
+<script src="js/maps/neighborhood.js?v=ryan-dialogue-fix-2"></script>
+<script src="js/maps/index.js?v=ryan-dialogue-fix-2"></script>
+<script src="js/maps/dealership-layout.js?v=ryan-dialogue-fix-2"></script>
+<script src="js/maps/neighborhood-layout.js?v=ryan-dialogue-fix-2"></script>
+<script src="js/data/vehicles.js?v=ryan-dialogue-fix-2"></script>
+<script src="js/data/procedural-names.js?v=ryan-dialogue-fix-2"></script>
+<script src="js/data/attitudes.js?v=ryan-dialogue-fix-2"></script>
+<script src="js/data/customers.js?v=ryan-dialogue-fix-2"></script>
+<script src="js/systems/customerSpawn.js?v=ryan-dialogue-fix-2"></script>
+<script src="js/systems/fredStory.js?v=ryan-dialogue-fix-2"></script>
+<script src="js/systems/walkIns.js?v=ryan-dialogue-fix-2"></script>
+<script src="js/systems/probation.js?v=ryan-dialogue-fix-2"></script>
+<script src="js/data/story-events.js?v=ryan-dialogue-fix-2"></script>
+<script src="js/systems/storyEvents.js?v=ryan-dialogue-fix-2"></script>
+<script src="js/systems/music.js?v=ryan-dialogue-fix-2"></script>
+<script src="js/systems/options.js?v=ryan-dialogue-fix-2"></script>
+<script src="js/systems/day2-meeting.js?v=ryan-dialogue-fix-2"></script>
+<script src="js/systems/sounds.js?v=ryan-dialogue-fix-2"></script>
+<script src="js/systems/cinematic.js?v=ryan-dialogue-fix-2"></script>
+<script src="js/systems/ryanMentor.js?v=ryan-dialogue-fix-2"></script>
+<script src="js/systems/tutorial.js?v=ryan-dialogue-fix-2"></script>
+<script src="js/dialogue.js?v=ryan-dialogue-fix-2"></script>
+<script src="js/world.js?v=ryan-dialogue-fix-2"></script>
+<script src="js/movement.js?v=ryan-dialogue-fix-2"></script>
+<script src="js/render.js?v=ryan-dialogue-fix-2"></script>
+<script src="js/main.js?v=ryan-dialogue-fix-2"></script>
+</body>
+</html>

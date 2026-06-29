@@ -1,0 +1,114 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--nav-height);
+  background: rgba(5, 5, 12, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--omni-border);
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-height);
+  gap: var(--space-lg);
+}
+
+.navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--omni-text);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.navbar__brand:hover {
+  color: var(--omni-neon-cyan);
+}
+
+.navbar__logo {
+  color: var(--omni-neon-cyan);
+  font-size: 1.25rem;
+  text-shadow: var(--omni-glow-cyan);
+}
+
+.navbar__nav {
+  display: flex;
+  gap: var(--space-xl);
+}
+
+.navbar__link {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--omni-text-muted);
+  text-decoration: none;
+  transition: color var(--duration-fast);
+}
+
+.navbar__link:hover {
+  color: var(--omni-neon-cyan);
+}
+
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.navbar__toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0.5rem;
+}
+
+.navbar__toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--omni-neon-cyan);
+  transition: transform var(--duration-fast);
+}
+
+@media (max-width: 768px) {
+  .navbar__toggle {
+    display: flex;
+  }
+
+  .navbar__nav {
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    padding: var(--space-lg);
+    background: rgba(5, 5, 12, 0.98);
+    border-bottom: 1px solid var(--omni-border);
+    transform: translateY(-120%);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      transform var(--duration-normal),
+      opacity var(--duration-normal);
+  }
+
+  .navbar__nav--open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .navbar__actions .omni-btn {
+    display: none;
+  }
+}

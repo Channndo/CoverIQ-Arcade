@@ -1,0 +1,91 @@
+.hero {
+  min-height: calc(100vh - var(--nav-height));
+  display: flex;
+  align-items: center;
+  padding: var(--space-3xl) 0;
+  position: relative;
+}
+
+.hero__content {
+  text-align: center;
+  max-width: 52rem;
+  margin: 0 auto;
+}
+
+.hero__eyebrow {
+  color: var(--omni-neon-purple);
+  margin-bottom: var(--space-lg);
+}
+
+.hero__title {
+  font-size: clamp(2.5rem, 10vw, 5rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-lg);
+  line-height: 1;
+}
+
+.hero__title-omni {
+  color: var(--omni-neon-cyan);
+  --glow-color: var(--omni-neon-cyan);
+  animation: omni-neon-pulse 3s ease-in-out infinite;
+}
+
+.hero__title-dot {
+  color: var(--omni-neon-pink);
+}
+
+.hero__title-games {
+  color: var(--omni-neon-pink);
+  --glow-color: var(--omni-neon-pink);
+}
+
+.hero__description {
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  color: var(--omni-text-muted);
+  max-width: 36rem;
+  margin: 0 auto var(--space-2xl);
+  line-height: 1.6;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  justify-content: center;
+  margin-bottom: var(--space-3xl);
+}
+
+.hero__stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xl);
+  flex-wrap: wrap;
+}
+
+.hero__stat {
+  text-align: center;
+}
+
+.hero__stat-value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--omni-neon-cyan);
+  text-shadow: var(--omni-glow-cyan);
+}
+
+.hero__stat-label {
+  font-size: 0.85rem;
+  color: var(--omni-text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.hero__stat-divider {
+  width: 1px;
+  height: 3rem;
+  background: var(--omni-border);
+}

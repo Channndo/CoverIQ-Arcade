@@ -1,0 +1,81 @@
+.ecosystem-section {
+  padding-bottom: var(--space-3xl);
+}
+
+.ecosystem-grid {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+@media (min-width: 768px) {
+  .ecosystem-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.ecosystem-card {
+  background: var(--omni-bg-card);
+  border: 1px solid var(--omni-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+}
+
+.ecosystem-card__title {
+  font-size: 1.1rem;
+  color: var(--omni-neon-cyan);
+  margin-bottom: var(--space-lg);
+}
+
+.ecosystem-repos {
+  list-style: none;
+}
+
+.ecosystem-repos li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ecosystem-repos li:last-child {
+  border-bottom: none;
+}
+
+.ecosystem-repos code {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  color: var(--omni-neon-purple);
+}
+
+.ecosystem-repos span {
+  font-size: 0.9rem;
+  color: var(--omni-text-muted);
+}
+
+.ecosystem-repos__games {
+  flex-direction: row !important;
+  align-items: center;
+  gap: var(--space-md) !important;
+  padding-top: var(--space-md) !important;
+}
+
+.ecosystem-integration {
+  margin-bottom: var(--space-lg);
+}
+
+.ecosystem-integration:last-child {
+  margin-bottom: 0;
+}
+
+.ecosystem-integration h4 {
+  font-size: 1rem;
+  color: var(--omni-neon-pink);
+  margin-bottom: 0.5rem;
+}
+
+.ecosystem-integration p {
+  font-size: 0.95rem;
+  color: var(--omni-text-muted);
+  line-height: 1.5;
+}

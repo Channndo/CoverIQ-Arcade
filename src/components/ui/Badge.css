@@ -1,0 +1,28 @@
+.omni-badge {
+  display: inline-block;
+  font-family: var(--font-pixel);
+  font-size: 0.5rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.6rem;
+  border-radius: var(--radius-sm);
+}
+
+.omni-badge--default {
+  background: rgba(0, 240, 255, 0.15);
+  color: var(--omni-neon-cyan);
+  border: 1px solid var(--omni-border);
+}
+
+.omni-badge--flagship {
+  background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(0, 204, 255, 0.2));
+  color: var(--omni-neon-green);
+  border: 1px solid rgba(0, 255, 136, 0.5);
+  animation: omni-pulse 2s ease-in-out infinite;
+}
+
+.omni-badge--coming-soon {
+  background: rgba(255, 45, 149, 0.2);
+  color: var(--omni-neon-pink);
+  border: 1px solid rgba(255, 45, 149, 0.4);
+}
