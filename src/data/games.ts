@@ -86,7 +86,7 @@ export const GAMES: Game[] = [
     pixelArtSeed: 'planet',
     repository: 'car-planet',
     coverIQCompatible: true,
-    playUrl: '/games/car-planet/index.html',
+    playUrl: `${import.meta.env.BASE_URL}games/car-planet/index.html`,
   },
 ];
 
