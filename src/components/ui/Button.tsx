@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import type { ReactNode } from 'react';
+import type { MouseEvent, ReactNode } from 'react';
 import './Button.css';
 
 interface ButtonProps {
@@ -32,6 +32,28 @@ export function Button({
   );
 
   if (href) {
+    // In-page hash links (e.g. "/#games", "#ecosystem") should smooth-scroll to
+    // the section instead of navigating — a hard navigation breaks under a base
+    // path (e.g. GitHub Pages) and 404s.
+    const hashIndex = href.indexOf('#');
+    const isHashLink = href.startsWith('#') || href.startsWith('/#');
+
+    if (isHashLink) {
+      const targetId = href.slice(hashIndex + 1);
+      const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+        const el = document.getElementById(targetId);
+        if (el) {
+          event.preventDefault();
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      };
+      return (
+        <a href={href} className={classes} onClick={handleClick}>
+          {content}
+        </a>
+      );
+    }
+
     return (
       <a href={href} className={classes}>
         {content}
