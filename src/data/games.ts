@@ -1,74 +1,8 @@
 import type { Game } from '../types/game';
 
+const base = import.meta.env.BASE_URL;
+
 export const GAMES: Game[] = [
-  {
-    id: 'uninsured-mayhem',
-    slug: 'uninsured-mayhem',
-    title: 'Uninsured Mayhem',
-    tagline: 'Highway chaos. Zero coverage.',
-    description:
-      'Fast-paced arcade highway chaos. Dodge disasters, outrun liability, and survive the uninsured streets.',
-    genre: 'arcade',
-    genreLabel: 'Arcade Action',
-    status: 'beta',
-    featured: true,
-    accentColor: '#ff2d55',
-    secondaryColor: '#ff9500',
-    pixelArtSeed: 'mayhem',
-    repository: 'uninsured-mayhem',
-    coverIQCompatible: true,
-  },
-  {
-    id: 'claim-chaos',
-    slug: 'claim-chaos',
-    title: 'Claim Chaos',
-    tagline: 'Disaster defense. Claim survival.',
-    description:
-      'Arcade disaster survival and defense. Hold the line against escalating catastrophes before the claim window closes.',
-    genre: 'survival',
-    genreLabel: 'Survival Defense',
-    status: 'beta',
-    featured: true,
-    accentColor: '#00f0ff',
-    secondaryColor: '#0066ff',
-    pixelArtSeed: 'chaos',
-    repository: 'claim-chaos',
-    coverIQCompatible: true,
-  },
-  {
-    id: 'risk-rush',
-    slug: 'risk-rush',
-    title: 'Risk Rush',
-    tagline: 'React fast. Risk smarter.',
-    description:
-      'Fast-paced reaction and risk management arcade. Split-second decisions, escalating stakes, pure adrenaline.',
-    genre: 'action',
-    genreLabel: 'Reaction Arcade',
-    status: 'beta',
-    featured: true,
-    accentColor: '#ffe156',
-    secondaryColor: '#ff6b00',
-    pixelArtSeed: 'rush',
-    repository: 'risk-rush',
-    coverIQCompatible: true,
-  },
-  {
-    id: 'agent-mode',
-    slug: 'agent-mode',
-    title: 'Agent Mode',
-    tagline: 'Build the agency. Master the grind.',
-    description:
-      'Slow-burn insurance agency management simulator inspired by retro tycoon and progression systems. Grow your empire one policy at a time.',
-    genre: 'simulation',
-    genreLabel: 'Tycoon Sim',
-    status: 'beta',
-    featured: false,
-    accentColor: '#b24bff',
-    secondaryColor: '#6b2fff',
-    pixelArtSeed: 'agent',
-    repository: 'agent-mode',
-    coverIQCompatible: true,
-  },
   {
     id: 'car-planet',
     slug: 'car-planet',
@@ -86,7 +20,25 @@ export const GAMES: Game[] = [
     pixelArtSeed: 'planet',
     repository: 'car-planet',
     coverIQCompatible: true,
-    playUrl: `${import.meta.env.BASE_URL}games/car-planet/index.html`,
+    playUrl: `${base}games/car-planet/index.html`,
+  },
+  {
+    id: 'auto-world',
+    slug: 'auto-world',
+    title: 'Auto World',
+    tagline: 'Wrench forever. Fight for the lot.',
+    description:
+      'Side-view arcade brawler from the Car Planet universe — pick your tech and battle through the shop with punches, kicks, specials, and finisher combos.',
+    genre: 'action',
+    genreLabel: 'Arcade Fighter',
+    status: 'beta',
+    featured: true,
+    accentColor: '#ffd700',
+    secondaryColor: '#ff6b00',
+    pixelArtSeed: 'autoworld',
+    repository: 'auto-world',
+    coverIQCompatible: true,
+    playUrl: `${base}games/auto-world/index.html`,
   },
 ];
 
