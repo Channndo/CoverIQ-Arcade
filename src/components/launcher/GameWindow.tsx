@@ -1,4 +1,5 @@
-import type { CSSProperties } from 'react';
+import type { CSSProperties, RefObject } from 'react';
+import { useRef } from 'react';
 import { useLauncher } from '../../context/LauncherContext';
 import { getGameBySlug } from '../../data/games';
 import { BUILTIN_GAMES, isBuiltinGame } from '../../games/registry';
@@ -10,7 +11,25 @@ function canEmbedExternal(game: Game): boolean {
   return Boolean(game.playUrl) && game.status !== 'coming-soon';
 }
 
-function GameWindowHeader({ game }: { game: Game }) {
+function requestFullscreen(el: HTMLElement | null) {
+  if (!el) return;
+  const req =
+    el.requestFullscreen ||
+    (el as unknown as { webkitRequestFullscreen?: () => Promise<void> }).webkitRequestFullscreen;
+  if (req) {
+    void req.call(el);
+  }
+}
+
+function GameWindowHeader({
+  game,
+  screenRef,
+  canFullscreen,
+}: {
+  game: Game;
+  screenRef: RefObject<HTMLDivElement | null>;
+  canFullscreen: boolean;
+}) {
   const { focusHub, closeGame } = useLauncher();
 
   return (
@@ -20,6 +39,16 @@ function GameWindowHeader({ game }: { game: Game }) {
         <span className="game-window__tagline">{game.tagline}</span>
       </div>
       <div className="game-window__actions">
+        {canFullscreen && (
+          <button
+            type="button"
+            className="game-window__btn game-window__btn--ghost"
+            aria-label={`Play ${game.title} in full screen`}
+            onClick={() => requestFullscreen(screenRef.current)}
+          >
+            ⛶ Full Screen
+          </button>
+        )}
         <button type="button" className="game-window__btn game-window__btn--ghost" onClick={focusHub}>
           Arcade
         </button>
@@ -48,6 +77,8 @@ function GameWindowPanel({
   const builtin = isBuiltinGame(game.slug);
   const Builtin = builtin ? BUILTIN_GAMES[game.slug as keyof typeof BUILTIN_GAMES] : null;
   const external = canEmbedExternal(game);
+  const screenRef = useRef<HTMLDivElement | null>(null);
+  const playable = builtin || external;
 
   return (
     <div
@@ -59,9 +90,12 @@ function GameWindowPanel({
       aria-hidden={!isVisible}
     >
       <div className="game-window__frame">
-        <GameWindowHeader game={game} />
+        <GameWindowHeader game={game} screenRef={screenRef} canFullscreen={playable} />
 
-        <div className={`game-window__screen${builtin ? ' game-window__screen--builtin' : ''}`}>
+        <div
+          ref={screenRef}
+          className={`game-window__screen${builtin ? ' game-window__screen--builtin' : ''}`}
+        >
           {Builtin ? (
             <Builtin active={isVisible} />
           ) : external && game.playUrl ? (
@@ -86,8 +120,8 @@ function GameWindowPanel({
         </div>
 
         <footer className="game-window__footer pixel-text">
-          {builtin || external
-            ? 'Esc → Arcade · Tabs to switch games'
+          {playable
+            ? 'Esc → Arcade · Tabs to switch games · ⛶ Full Screen'
             : 'Esc → Arcade · Game build not deployed yet'}
         </footer>
       </div>

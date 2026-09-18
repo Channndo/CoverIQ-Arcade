@@ -123,6 +123,20 @@
   display: block;
 }
 
+/* Full-screen: fill the whole display and center the game */
+.game-window__screen:fullscreen,
+.game-window__screen:-webkit-full-screen {
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+}
+
+.game-window__screen:fullscreen > *,
+.game-window__screen:-webkit-full-screen > * {
+  width: 100%;
+  height: 100%;
+}
+
 .game-window__placeholder {
   width: 100%;
   height: 100%;
