@@ -101,7 +101,7 @@
 .arcade-board__list li {
   display: grid;
   grid-template-columns: 2.4rem 1.4rem 1fr auto;
-  align-items: center;
+  align-items: start;
   gap: 0.45rem;
   font-family: var(--font-body);
   color: var(--omni-text);
@@ -109,6 +109,12 @@
 
 .arcade-board__list li.is-you {
   color: var(--omni-neon-yellow);
+}
+
+.arcade-board__rank,
+.arcade-board__avatar,
+.arcade-board__value {
+  padding-top: 0.15rem;
 }
 
 .arcade-board__rank {
@@ -121,10 +127,32 @@
   text-align: center;
 }
 
+.arcade-board__identity {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+}
+
 .arcade-board__name {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.arcade-board__badge {
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  color: var(--omni-neon-green);
+}
+
+.arcade-board__cert {
+  color: var(--omni-neon-cyan);
+  text-decoration: none;
+}
+
+.arcade-board__cert:hover {
+  text-decoration: underline;
 }
 
 .arcade-board__value {

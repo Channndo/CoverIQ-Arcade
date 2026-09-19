@@ -14,6 +14,10 @@ export function coveriqSignupUrl(): string {
   return `${coveriqSiteUrl()}/signup`;
 }
 
+export function academyVerifyUrl(certificateId: string): string {
+  return `${coveriqSiteUrl()}/academy/verify?id=${encodeURIComponent(certificateId)}`;
+}
+
 export const LEADERBOARD_GAMES = [
   {
     slug: 'car-planet',

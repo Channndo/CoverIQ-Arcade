@@ -1,9 +1,16 @@
+export interface LeaderboardBadges {
+  academy?: boolean;
+  testOut?: boolean;
+  certificateId?: string | null;
+}
+
 export interface LeaderboardEntry {
   rank: number;
   publicName: string;
   avatarId: string | null;
   value: number;
   updatedAt?: string;
+  badges?: LeaderboardBadges;
   isYou?: boolean;
 }
 
@@ -14,7 +21,12 @@ export interface LeaderboardResponse {
   statKey?: string;
   label?: string;
   entries?: LeaderboardEntry[];
-  you?: { rank: number; value: number; publicName: string } | null;
+  you?: {
+    rank: number;
+    value: number;
+    publicName: string;
+    badges?: LeaderboardBadges;
+  } | null;
 }
 
 export interface ArcadeIdentityState {

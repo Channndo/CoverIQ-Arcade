@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { SectionHeader } from '../components/ui/SectionHeader';
 import { useArcadeIdentity } from './ArcadeIdentityContext';
 import { fetchLeaderboard } from './api';
-import { LEADERBOARD_GAMES } from './config';
+import { academyVerifyUrl, LEADERBOARD_GAMES } from './config';
 import type { LeaderboardEntry, LeaderboardResponse } from './types';
 import { AVATAR_GLYPHS } from './types';
 import './LeaderboardSection.css';
@@ -62,7 +62,27 @@ function Board({
               <span className="arcade-board__avatar" aria-hidden="true">
                 {glyph(row.avatarId)}
               </span>
-              <span className="arcade-board__name">{row.publicName}</span>
+              <span className="arcade-board__identity">
+                <span className="arcade-board__name">{row.publicName}</span>
+                {row.badges?.academy && (
+                  <span className="arcade-board__badge">
+                    {row.badges.testOut ? 'Academy · Tested out' : 'Academy'}
+                    {row.badges.certificateId ? (
+                      <>
+                        {' · '}
+                        <a
+                          href={academyVerifyUrl(row.badges.certificateId)}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="arcade-board__cert"
+                        >
+                          {row.badges.certificateId}
+                        </a>
+                      </>
+                    ) : null}
+                  </span>
+                )}
+              </span>
               <span className="arcade-board__value">{row.value}</span>
             </li>
           ))}
