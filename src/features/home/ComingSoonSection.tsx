@@ -13,7 +13,7 @@ export function ComingSoonSection() {
       <div className="container">
         <SectionHeader
           title="More Worlds Incoming"
-          subtitle="Additional titles expanding the arcade — each in its own repository, united by omni.games."
+          subtitle="Additional titles expanding the arcade — each in its own repository, united by Square1 Arcade."
         />
         <div className="games-grid games-grid--compact">
           {nonFeatured.map((game, i) => (

@@ -27,4 +27,6 @@ export interface Game {
   coverIQCompatible: boolean;
   /** Deployed game URL for iframe embed (null = placeholder until live) */
   playUrl?: string | null;
+  /** Lead-developer credit / imprint shown subtly on the card (e.g. omni.games). */
+  leadDevCredit?: string;
 }

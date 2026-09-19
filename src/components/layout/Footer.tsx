@@ -9,12 +9,13 @@ export function Footer() {
           <p className="footer__logo">{PLATFORM.name}</p>
           <p className="footer__tagline">{PLATFORM.tagline}</p>
           <p className="footer__copy">
-            Part of the{' '}
+            A <strong>{PLATFORM.studio}</strong> studio · part of the{' '}
             <a href={PLATFORM.omnistrataUrl} target="_blank" rel="noopener noreferrer">
               Omnistrata
             </a>{' '}
             ecosystem · v{PLATFORM.version}
           </p>
+          <p className="footer__credit">{PLATFORM.leadDevCredit}</p>
         </div>
         <div className="footer__future">
           <p className="footer__future-title pixel-text">Future Systems</p>

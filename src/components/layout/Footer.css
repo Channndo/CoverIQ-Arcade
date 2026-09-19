@@ -35,6 +35,14 @@
   color: var(--omni-text-dim);
 }
 
+.footer__credit {
+  margin-top: 0.4rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--omni-text-dim);
+  opacity: 0.85;
+}
+
 .footer__future-title {
   color: var(--omni-neon-purple);
   margin-bottom: var(--space-md);

@@ -13,7 +13,7 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
-          Omnistrata Arcade Universe
+          A Square1 Studios Universe
         </motion.p>
 
         <motion.h1
@@ -22,9 +22,9 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35, duration: 0.7 }}
         >
-          <span className="hero__title-omni">omni</span>
-          <span className="hero__title-dot">.</span>
-          <span className="hero__title-games">games</span>
+          <span className="hero__title-omni">Square1</span>
+          <span className="hero__title-dot"> </span>
+          <span className="hero__title-games">Arcade</span>
         </motion.h1>
 
         <motion.p

@@ -52,6 +52,9 @@ export function GameCard({ game, index = 0 }: GameCardProps) {
           <h3 className="game-card__title">{game.title}</h3>
           <p className="game-card__tagline">{game.tagline}</p>
           <p className="game-card__description">{game.description}</p>
+          {game.leadDevCredit ? (
+            <span className="game-card__credit pixel-text">{game.leadDevCredit}</span>
+          ) : null}
           <span className="game-card__launch pixel-text">
             {isOpen ? 'Switch to cabinet' : 'Launch cabinet'}
           </span>

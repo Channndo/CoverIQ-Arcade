@@ -21,6 +21,7 @@ export const GAMES: Game[] = [
     repository: 'car-planet',
     coverIQCompatible: true,
     playUrl: `${base}games/car-planet/index.html`,
+    leadDevCredit: 'omni.games · lead dev Chandler Hill',
   },
   {
     id: 'auto-world',
@@ -39,6 +40,7 @@ export const GAMES: Game[] = [
     repository: 'auto-world',
     coverIQCompatible: true,
     playUrl: `${base}games/auto-world/index.html`,
+    leadDevCredit: 'omni.games · lead dev Chandler Hill',
   },
 ];
 

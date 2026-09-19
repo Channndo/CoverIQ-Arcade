@@ -24,6 +24,15 @@
   opacity: 0.85;
 }
 
+.game-card__credit {
+  display: block;
+  margin-top: var(--space-sm);
+  font-size: 0.45rem;
+  letter-spacing: 0.04em;
+  color: var(--omni-text-dim);
+  opacity: 0.8;
+}
+
 .game-card__cabinet {
   border-radius: var(--radius-lg);
   overflow: hidden;

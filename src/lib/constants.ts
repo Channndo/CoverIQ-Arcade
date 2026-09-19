@@ -1,10 +1,13 @@
 export const PLATFORM = {
-  name: 'omni.games',
-  tagline: 'The Omnistrata Arcade Universe',
+  name: 'Square1 Arcade',
+  studio: 'Square1 Studios',
+  tagline: 'A Square1 Studios Universe',
   description:
-    'A futuristic indie arcade ecosystem — retro soul, modern tech, infinite worlds.',
+    'A futuristic indie arcade universe — retro soul, modern tech, infinite worlds.',
   version: '0.1.0',
   omnistrataUrl: 'https://omnistrata.com',
+  /** Lead-developer imprint under Omnistrata (Chandler Hill). */
+  leadDevCredit: 'omni.games — lead development by Chandler Hill',
 } as const;
 
 export const ROUTES = {

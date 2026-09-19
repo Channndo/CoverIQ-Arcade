@@ -14,7 +14,7 @@ const INTEGRATIONS = [
   {
     title: 'CoverIQ Arcade',
     description:
-      'Embed omni.games titles, feature crossover branding, and launch insurance-themed arcade experiences from a unified hub.',
+      'Embed Square1 Arcade titles, feature crossover branding, and launch insurance-themed arcade experiences from a unified hub.',
   },
   {
     title: 'Omnistrata Ecosystem',
