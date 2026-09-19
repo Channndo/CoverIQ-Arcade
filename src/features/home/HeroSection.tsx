@@ -22,9 +22,12 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35, duration: 0.7 }}
         >
-          <span className="hero__title-omni">Square1</span>
-          <span className="hero__title-dot"> </span>
-          <span className="hero__title-games">Arcade</span>
+          <img
+            className="hero__logo-img"
+            src={`${import.meta.env.BASE_URL}square1-logo.png`}
+            alt="Square1 Arcade"
+          />
+          <span className="hero__title-arcade">Arcade</span>
         </motion.h1>
 
         <motion.p

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { PLATFORM, ROUTES } from '../../lib/constants';
+import { ROUTES } from '../../lib/constants';
 import { Button } from '../ui/Button';
 import './Navbar.css';
 
@@ -17,8 +17,12 @@ export function Navbar() {
     <header className="navbar">
       <div className="container navbar__inner">
         <Link to={ROUTES.home} className="navbar__brand" onClick={() => setOpen(false)}>
-          <span className="navbar__logo">◈</span>
-          <span className="navbar__name">{PLATFORM.name}</span>
+          <img
+            className="navbar__mark"
+            src={`${import.meta.env.BASE_URL}square1-mark.png`}
+            alt="Square1 Arcade"
+          />
+          <span className="navbar__name">Arcade</span>
         </Link>
 
         <nav className={`navbar__nav${open ? ' navbar__nav--open' : ''}`} aria-label="Main">

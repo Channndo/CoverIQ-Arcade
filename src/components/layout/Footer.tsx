@@ -6,7 +6,11 @@ export function Footer() {
     <footer className="footer">
       <div className="container footer__grid">
         <div className="footer__brand">
-          <p className="footer__logo">{PLATFORM.name}</p>
+          <img
+            className="footer__logo-img"
+            src={`${import.meta.env.BASE_URL}square1-logo.png`}
+            alt="Square1 Arcade"
+          />
           <p className="footer__tagline">{PLATFORM.tagline}</p>
           <p className="footer__copy">
             A <strong>{PLATFORM.studio}</strong> studio · part of the{' '}

@@ -18,26 +18,31 @@
 }
 
 .hero__title {
-  font-size: clamp(2.5rem, 10vw, 5rem);
-  font-weight: 900;
-  letter-spacing: -0.02em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
   margin-bottom: var(--space-lg);
   line-height: 1;
 }
 
-.hero__title-omni {
-  color: var(--omni-neon-cyan);
-  --glow-color: var(--omni-neon-cyan);
-  animation: omni-neon-pulse 3s ease-in-out infinite;
+.hero__logo-img {
+  width: clamp(15rem, 42vw, 24rem);
+  height: auto;
+  filter: drop-shadow(0 0 24px rgba(0, 240, 255, 0.25));
 }
 
-.hero__title-dot {
-  color: var(--omni-neon-pink);
-}
-
-.hero__title-games {
+.hero__title-arcade {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 7vw, 3.25rem);
+  font-weight: 900;
+  letter-spacing: 0.35em;
+  text-indent: 0.35em;
+  text-transform: uppercase;
   color: var(--omni-neon-pink);
   --glow-color: var(--omni-neon-pink);
+  text-shadow: var(--omni-glow-pink);
+  animation: omni-neon-pulse 3s ease-in-out infinite;
 }
 
 .hero__description {
