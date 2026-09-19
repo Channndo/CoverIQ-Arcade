@@ -11,14 +11,30 @@ function canEmbedExternal(game: Game): boolean {
   return Boolean(game.playUrl) && game.status !== 'coming-soon';
 }
 
+type FullscreenCapableElement = HTMLElement & {
+  webkitRequestFullscreen?: () => Promise<void> | void;
+  msRequestFullscreen?: () => Promise<void> | void;
+};
+
 function requestFullscreen(el: HTMLElement | null) {
   if (!el) return;
+  const target = el as FullscreenCapableElement;
   const req =
-    el.requestFullscreen ||
-    (el as unknown as { webkitRequestFullscreen?: () => Promise<void> }).webkitRequestFullscreen;
-  if (req) {
-    void req.call(el);
+    target.requestFullscreen || target.webkitRequestFullscreen || target.msRequestFullscreen;
+  if (!req) {
+    console.warn('[arcade] Fullscreen API is unavailable in this browser.');
+    return;
   }
+  // Wrap in Promise.resolve so both promise-based and prefixed void variants
+  // surface rejections. When the arcade is embedded, the request is blocked by
+  // Permissions Policy unless the parent <iframe> carries allow="fullscreen".
+  Promise.resolve(req.call(target)).catch((err: unknown) => {
+    console.warn(
+      '[arcade] Fullscreen request was blocked. If the arcade is embedded in another site, ' +
+        'the embedding <iframe> must include allow="fullscreen".',
+      err,
+    );
+  });
 }
 
 function GameWindowHeader({
@@ -104,6 +120,7 @@ function GameWindowPanel({
               title={game.title}
               className="game-window__iframe"
               allow="fullscreen; gamepad"
+              allowFullScreen
               sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
             />
           ) : (

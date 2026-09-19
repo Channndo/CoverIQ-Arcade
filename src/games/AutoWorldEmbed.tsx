@@ -7,7 +7,8 @@ export function AutoWorldEmbed({ active }: { active: boolean }) {
         src={`${import.meta.env.BASE_URL}games/auto-world/index.html`}
         title="Auto World"
         className="auto-world-embed__frame"
-        allow="fullscreen"
+        allow="fullscreen; gamepad"
+        allowFullScreen
       />
       {!active && <div className="auto-world-embed__pause" aria-hidden="true" />}
     </div>

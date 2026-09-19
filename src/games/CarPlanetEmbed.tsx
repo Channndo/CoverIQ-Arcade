@@ -7,7 +7,8 @@ export function CarPlanetEmbed({ active }: { active: boolean }) {
         src={`${import.meta.env.BASE_URL}games/car-planet/index.html`}
         title="Car Planet"
         className="car-planet-embed__frame"
-        allow="fullscreen"
+        allow="fullscreen; gamepad"
+        allowFullScreen
       />
       {!active && <div className="car-planet-embed__pause" aria-hidden="true" />}
     </div>
