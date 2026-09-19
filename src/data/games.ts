@@ -22,7 +22,7 @@ export const GAMES: Game[] = [
     coverIQCompatible: true,
     coverImage: `${base}covers/car-planet-cover.jpg`,
     playUrl: `${base}games/car-planet/index.html`,
-    leadDevCredit: 'omni.games · lead dev Chandler Hill',
+    leadDevCredit: 'omni.games',
   },
   {
     id: 'auto-world',
@@ -43,7 +43,7 @@ export const GAMES: Game[] = [
     coverImage: `${base}covers/auto-world-cover.jpg`,
     minAge: 13,
     playUrl: `${base}games/auto-world/index.html`,
-    leadDevCredit: 'omni.games · lead dev Chandler Hill',
+    leadDevCredit: 'omni.games',
   },
 ];
 

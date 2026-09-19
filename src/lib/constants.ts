@@ -6,8 +6,8 @@ export const PLATFORM = {
     'A futuristic indie arcade universe — retro soul, modern tech, infinite worlds.',
   version: '0.1.0',
   omnistrataUrl: 'https://omnistrata.com',
-  /** Lead-developer imprint under Omnistrata (Chandler Hill). */
-  leadDevCredit: 'omni.games — lead development by Chandler Hill',
+  /** omni.games imprint shown in the footer. */
+  leadDevCredit: 'an omni.games production',
 } as const;
 
 export const ROUTES = {
