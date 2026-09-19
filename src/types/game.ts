@@ -25,6 +25,10 @@ export interface Game {
   pixelArtSeed: string;
   repository: string;
   coverIQCompatible: boolean;
+  /** Official title-screen cover (public URL). Falls back to pixel-art seed. */
+  coverImage?: string;
+  /** If set, player must enter a date of birth proving this age before play. */
+  minAge?: number;
   /** Deployed game URL for iframe embed (null = placeholder until live) */
   playUrl?: string | null;
   /** Lead-developer credit / imprint shown subtly on the card (e.g. omni.games). */

@@ -4,7 +4,7 @@ import type { Game } from '../../types/game';
 import { useLauncher } from '../../context/LauncherContext';
 import { Badge } from '../ui/Badge';
 import { Tag } from '../ui/Tag';
-import { PixelArtPlaceholder } from './PixelArtPlaceholder';
+import { GameCover } from './GameCover';
 import { ComingSoonOverlay } from './ComingSoonOverlay';
 import './GameCard.css';
 
@@ -39,12 +39,13 @@ export function GameCard({ game, index = 0 }: GameCardProps) {
             <span className="game-card__marquee-text pixel-text">{game.title}</span>
           </div>
           <div className="game-card__screen">
-            <PixelArtPlaceholder game={game} />
+            <GameCover game={game} />
             <ComingSoonOverlay />
           </div>
           <div className="game-card__panel">
             {game.flagship ? <Badge variant="flagship">Flagship</Badge> : null}
             <Tag label={game.genreLabel} color={game.accentColor} />
+            {game.minAge ? <Badge variant="default">{game.minAge}+</Badge> : null}
             {isOpen ? <Badge variant="default">Open</Badge> : null}
           </div>
         </div>

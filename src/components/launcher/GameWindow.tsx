@@ -1,10 +1,12 @@
 import type { CSSProperties, RefObject } from 'react';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useLauncher } from '../../context/LauncherContext';
 import { getGameBySlug } from '../../data/games';
+import { isAgeVerified, setAgeVerified } from '../../lib/ageGate';
 import { BUILTIN_GAMES, isBuiltinGame } from '../../games/registry';
 import type { Game } from '../../types/game';
-import { PixelArtPlaceholder } from '../arcade/PixelArtPlaceholder';
+import { AgeGate } from '../arcade/AgeGate';
+import { GameCover } from '../arcade/GameCover';
 import './GameWindow.css';
 
 function canEmbedExternal(game: Game): boolean {
@@ -94,7 +96,11 @@ function GameWindowPanel({
   const Builtin = builtin ? BUILTIN_GAMES[game.slug as keyof typeof BUILTIN_GAMES] : null;
   const external = canEmbedExternal(game);
   const screenRef = useRef<HTMLDivElement | null>(null);
-  const playable = builtin || external;
+  const minAge = game.minAge;
+  const needsAgeGate = typeof minAge === 'number' && minAge > 0;
+  const [ageOk, setAgeOk] = useState(() => (needsAgeGate ? isAgeVerified(game.slug) : true));
+  const gated = needsAgeGate && !ageOk;
+  const playable = (builtin || external) && !gated;
 
   return (
     <div
@@ -112,7 +118,16 @@ function GameWindowPanel({
           ref={screenRef}
           className={`game-window__screen${builtin ? ' game-window__screen--builtin' : ''}`}
         >
-          {Builtin ? (
+          {gated && minAge ? (
+            <AgeGate
+              game={game}
+              minAge={minAge}
+              onVerified={() => {
+                setAgeVerified(game.slug);
+                setAgeOk(true);
+              }}
+            />
+          ) : Builtin ? (
             <Builtin active={isVisible} />
           ) : external && game.playUrl ? (
             <iframe
@@ -125,7 +140,7 @@ function GameWindowPanel({
             />
           ) : (
             <div className="game-window__placeholder">
-              <PixelArtPlaceholder game={game} />
+              <GameCover game={game} />
               <div className="game-window__coming-soon">
                 <p className="pixel-text">Insert Coin — Coming Soon</p>
                 <p className="game-window__repo">
@@ -137,9 +152,11 @@ function GameWindowPanel({
         </div>
 
         <footer className="game-window__footer pixel-text">
-          {playable
-            ? 'Esc → Arcade · Tabs to switch games · ⛶ Full Screen'
-            : 'Esc → Arcade · Game build not deployed yet'}
+          {gated
+            ? 'Age verification required · Esc → Arcade'
+            : playable
+              ? 'Esc → Arcade · Tabs to switch games · ⛶ Full Screen'
+              : 'Esc → Arcade · Game build not deployed yet'}
         </footer>
       </div>
     </div>
