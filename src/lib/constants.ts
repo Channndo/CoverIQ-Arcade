@@ -7,7 +7,7 @@ export const PLATFORM = {
   version: '0.1.0',
   omnistrataUrl: 'https://omnistrata.com',
   /** omni.games imprint shown in the footer. */
-  leadDevCredit: 'an omni.games production',
+  leadDevCredit: 'omni.games',
 } as const;
 
 export const ROUTES = {
