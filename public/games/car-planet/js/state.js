@@ -195,8 +195,15 @@ function buildSavePayload() {
 }
 
 function persistGame() {
+    if (window.CoverIQArcade && typeof window.CoverIQArcade.canSave === 'function' && !window.CoverIQArcade.canSave()) {
+        return false;
+    }
     localStorage.setItem(SAVE_KEY, JSON.stringify(buildSavePayload()));
     if (typeof refreshTitleScreen === 'function') refreshTitleScreen();
+    if (window.CoverIQArcade && typeof window.CoverIQArcade.onLocalSaved === 'function') {
+        try { window.CoverIQArcade.onLocalSaved(buildSavePayload()); } catch (e) { /* local save already wrote */ }
+    }
+    return true;
 }
 
 window.hasSaveFile = hasSaveFile;

@@ -246,7 +246,7 @@ function makeChoice(val,e){
         if(val==='NO'){activeDialogue=["You turned away the walk-in."];activeLine=0;dText.innerText=activeDialogue[0];if(probation.active){adjustCSI(-5);addWarning('Refused walk-in guest.');}}
         if(val==='YES'){gameEvents.carWaitingForRO='walkin';activeDialogue=["Vehicle checked in.\nGo to your computer to write the RO."];activeLine=0;dText.innerText=activeDialogue[0];}
     }
-    else if(currentChoiceType==='SAVE_GAME'){if(val==='NO'){activeDialogue=["Save cancelled."];activeLine=0;dText.innerText=activeDialogue[0];}if(val==='YES'){persistGame();activeDialogue=["Saving...\nDon't turn off the power.",playerDetails.name+" saved the game!"];activeLine=0;dText.innerText=activeDialogue[0];}}
+    else if(currentChoiceType==='SAVE_GAME'){if(val==='NO'){activeDialogue=["Save cancelled."];activeLine=0;dText.innerText=activeDialogue[0];}if(val==='YES'){if(persistGame()===false){activeDialogue=(window.CoverIQArcade&&window.CoverIQArcade.saveBlockedLines&&window.CoverIQArcade.saveBlockedLines())||["Save needs a CoverIQ account."];}else{activeDialogue=["Saving...\nDon't turn off the power.",playerDetails.name+" saved the game!"];}activeLine=0;dText.innerText=activeDialogue[0];}}
 }
 function triggerFlash(){gameState='FLASH';flash.active=true;flash.alpha=0;flash.state='fade_out';}
 function playIntroLine(){

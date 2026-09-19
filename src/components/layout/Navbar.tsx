@@ -6,6 +6,7 @@ import './Navbar.css';
 
 const NAV_ITEMS = [
   { label: 'Games', href: ROUTES.games },
+  { label: 'Boards', href: ROUTES.boards },
   { label: 'Ecosystem', href: ROUTES.ecosystem },
   { label: 'Coming Soon', href: ROUTES.comingSoon },
 ];
@@ -27,7 +28,20 @@ export function Navbar() {
 
         <nav className={`navbar__nav${open ? ' navbar__nav--open' : ''}`} aria-label="Main">
           {NAV_ITEMS.map((item) => (
-            <a key={item.href} href={item.href} className="navbar__link" onClick={() => setOpen(false)}>
+            <a
+              key={item.href}
+              href={item.href}
+              className="navbar__link"
+              onClick={(event) => {
+                setOpen(false);
+                const hash = item.href.indexOf('#');
+                if (hash < 0) return;
+                const el = document.getElementById(item.href.slice(hash + 1));
+                if (!el) return;
+                event.preventDefault();
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }}
+            >
               {item.label}
             </a>
           ))}

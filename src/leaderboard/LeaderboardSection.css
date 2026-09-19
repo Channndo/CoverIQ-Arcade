@@ -1,0 +1,133 @@
+.arcade-boards {
+  position: relative;
+}
+
+.arcade-boards__status {
+  margin: 0 0 var(--space-lg);
+  color: var(--omni-text-muted);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+}
+
+.arcade-boards__status a {
+  color: var(--omni-neon-cyan);
+}
+
+.arcade-boards__status strong {
+  color: var(--omni-neon-green);
+}
+
+.arcade-boards__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+}
+
+.arcade-boards__tab {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid var(--omni-border);
+  background: var(--omni-bg-card);
+  color: var(--omni-text-muted);
+  cursor: pointer;
+}
+
+.arcade-boards__tab.is-active {
+  color: var(--omni-bg-deep);
+  background: var(--omni-neon-cyan);
+  border-color: var(--omni-neon-cyan);
+}
+
+.arcade-boards__grid {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .arcade-boards__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.arcade-board {
+  --board-accent: var(--omni-neon-cyan);
+  background: var(--omni-bg-card);
+  border: 1px solid color-mix(in srgb, var(--board-accent) 35%, transparent);
+  border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-lg);
+  min-height: 16rem;
+}
+
+.arcade-board__head {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.arcade-board__stat {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--board-accent);
+}
+
+.arcade-board__you {
+  font-family: var(--font-pixel);
+  font-size: 0.45rem;
+  color: var(--omni-neon-yellow);
+}
+
+.arcade-board__empty {
+  color: var(--omni-text-dim);
+  font-size: 0.95rem;
+}
+
+.arcade-board__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.arcade-board__list li {
+  display: grid;
+  grid-template-columns: 2.4rem 1.4rem 1fr auto;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-body);
+  color: var(--omni-text);
+}
+
+.arcade-board__list li.is-you {
+  color: var(--omni-neon-yellow);
+}
+
+.arcade-board__rank {
+  font-family: var(--font-pixel);
+  font-size: 0.45rem;
+  color: var(--omni-text-muted);
+}
+
+.arcade-board__avatar {
+  text-align: center;
+}
+
+.arcade-board__name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.arcade-board__value {
+  font-variant-numeric: tabular-nums;
+  color: var(--board-accent);
+}

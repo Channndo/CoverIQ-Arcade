@@ -1501,6 +1501,9 @@ function startLevel() {
         document.getElementById('go-msg').style.color = "#FFD700";
         document.getElementById('go-msg').style.fontSize = "16px";
         document.getElementById('game-over-screen').style.display = 'flex';
+        if (window.CoverIQArcade && typeof window.CoverIQArcade.onRunComplete === 'function') {
+            window.CoverIQArcade.onRunComplete(level);
+        }
         return;
     }
 
@@ -1674,6 +1677,9 @@ function updatePhysics() {
     if (p2.hp <= 0 && state === 'FIGHT') {
         state = 'WAIT';
         level++;
+        if (window.CoverIQArcade && typeof window.CoverIQArcade.onFightWon === 'function') {
+            window.CoverIQArcade.onFightWon(level);
+        }
         setTimeout(startLevel, 2000);
     }
 

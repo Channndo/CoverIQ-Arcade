@@ -13,6 +13,7 @@ export const PLATFORM = {
 export const ROUTES = {
   home: '/',
   games: '/#games',
+  boards: '/#boards',
   ecosystem: '/#ecosystem',
   comingSoon: '/#coming-soon',
   game: (slug: string) => `/games/${slug}`,
