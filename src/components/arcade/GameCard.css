@@ -111,31 +111,10 @@
   overflow: hidden;
 }
 
-.game-card--flagship {
-  grid-column: 1 / -1;
+.game-card--flagship .game-card__cabinet {
+  border-width: 3px;
 }
 
-@media (min-width: 768px) {
-  .game-card--flagship {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: var(--space-xl);
-    align-items: center;
-  }
-
-  .game-card--flagship .game-card__link {
-    display: grid;
-    grid-template-columns: subgrid;
-    grid-column: 1 / -1;
-    gap: inherit;
-    align-items: center;
-  }
-
-  .game-card--flagship .game-card__info {
-    padding: 0;
-  }
-
-  .game-card--flagship .game-card__title {
-    font-size: 1.75rem;
-  }
+.game-card--flagship .game-card__title {
+  font-size: 1.45rem;
 }

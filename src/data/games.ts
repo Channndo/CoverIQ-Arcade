@@ -28,13 +28,14 @@ export const GAMES: Game[] = [
     id: 'car-planet',
     slug: 'car-planet',
     title: 'Car Planet',
-    tagline: 'Collect. Upgrade. Conquer the lot.',
+    tagline: 'GOOD CARS. A BRIGHTER TOMORROW.',
     description:
-      'Dealership exploration, vehicle collecting, retro RPG progression, and deep upgrade loops across an expandable automotive world.',
+      'Southside dealership life — collect, upgrade, and run the lot in a retro RPG across an expandable automotive world.',
     genre: 'rpg',
     genreLabel: 'Collection RPG',
     status: 'beta',
     featured: true,
+    flagship: true,
     accentColor: '#00ff88',
     secondaryColor: '#00ccff',
     pixelArtSeed: 'planet',
@@ -73,6 +74,14 @@ export function getGameBySlug(slug: string): Game | undefined {
 
 export function getFeaturedGames(): Game[] {
   return GAMES.filter((g) => g.featured);
+}
+
+export function getFlagshipGames(): Game[] {
+  return GAMES.filter((g) => g.flagship);
+}
+
+export function getExtraGames(): Game[] {
+  return GAMES.filter((g) => !g.flagship);
 }
 
 export function getComingSoonGames(): Game[] {

@@ -27,8 +27,8 @@ From CoverIQ local dev: [http://localhost:5173/arcade](http://localhost:5173/arc
 | Game | Slug | Notes |
 |------|------|--------|
 | **Policy Quest** (flagship) | `policy-quest` | Full game embedded from `public/games/policy-quest/` |
-| **Car Planet** | `car-planet` | Full game embedded from `public/games/car-planet/` |
-| **Auto World** | `auto-world` | Full game embedded from `public/games/auto-world/` (13+ DOB gate) |
+| **Car Planet** (flagship) | `car-planet` | Full game embedded from `public/games/car-planet/` |
+| **Auto World** | `auto-world` | Extra cabinet — full game from `public/games/auto-world/` (13+ DOB gate) |
 | Uninsured Mayhem | `uninsured-mayhem` | Highway dodge arcade (Car Planet-style pixels) |
 | Claim Chaos | `claim-chaos` | Dealership disaster claims |
 | Risk Rush | `risk-rush` | Lane reaction / risk timing |
