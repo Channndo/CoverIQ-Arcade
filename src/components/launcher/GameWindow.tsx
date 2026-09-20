@@ -1,5 +1,5 @@
-import type { CSSProperties, RefObject } from 'react';
-import { useRef, useState } from 'react';
+import type { CSSProperties } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLauncher } from '../../context/LauncherContext';
 import { getGameBySlug } from '../../data/games';
 import { isAgeVerified, setAgeVerified } from '../../lib/ageGate';
@@ -24,29 +24,21 @@ function requestFullscreen(el: HTMLElement | null) {
   const req =
     target.requestFullscreen || target.webkitRequestFullscreen || target.msRequestFullscreen;
   if (!req) {
-    console.warn('[arcade] Fullscreen API is unavailable in this browser.');
     return;
   }
-  // Wrap in Promise.resolve so both promise-based and prefixed void variants
-  // surface rejections. When the arcade is embedded, the request is blocked by
-  // Permissions Policy unless the parent <iframe> carries allow="fullscreen".
-  Promise.resolve(req.call(target)).catch((err: unknown) => {
-    console.warn(
-      '[arcade] Fullscreen request was blocked. If the arcade is embedded in another site, ' +
-        'the embedding <iframe> must include allow="fullscreen".',
-      err,
-    );
+  Promise.resolve(req.call(target)).catch(() => {
+    /* CSS play-mode already fills the viewport when native fullscreen is blocked. */
   });
 }
 
 function GameWindowHeader({
   game,
-  screenRef,
   canFullscreen,
+  onFullscreen,
 }: {
   game: Game;
-  screenRef: RefObject<HTMLDivElement | null>;
   canFullscreen: boolean;
+  onFullscreen: () => void;
 }) {
   const { focusHub, closeGame } = useLauncher();
 
@@ -62,7 +54,7 @@ function GameWindowHeader({
             type="button"
             className="game-window__btn game-window__btn--ghost"
             aria-label={`Play ${game.title} in full screen`}
-            onClick={() => requestFullscreen(screenRef.current)}
+            onClick={onFullscreen}
           >
             ⛶ Full Screen
           </button>
@@ -92,30 +84,52 @@ function GameWindowPanel({
   isVisible: boolean;
   style: CSSProperties;
 }) {
+  const { playMode, enterPlayMode, exitPlayToArcade } = useLauncher();
   const builtin = isBuiltinGame(game.slug);
   const Builtin = builtin ? BUILTIN_GAMES[game.slug as keyof typeof BUILTIN_GAMES] : null;
   const external = canEmbedExternal(game);
-  const screenRef = useRef<HTMLDivElement | null>(null);
+  const windowRef = useRef<HTMLDivElement | null>(null);
   const minAge = game.minAge;
   const needsAgeGate = typeof minAge === 'number' && minAge > 0;
   const [ageOk, setAgeOk] = useState(() => (needsAgeGate ? isAgeVerified(game.slug) : true));
   const gated = needsAgeGate && !ageOk;
   const playable = (builtin || external) && !gated;
+  const isPlay = playMode && isVisible;
+
+  useEffect(() => {
+    if (!isPlay) return;
+    requestFullscreen(windowRef.current);
+  }, [isPlay]);
 
   return (
     <div
-      className={`game-window${isVisible ? ' game-window--visible' : ''}`}
+      ref={windowRef}
+      className={`game-window${isVisible ? ' game-window--visible' : ''}${isPlay ? ' game-window--play' : ''}`}
       style={style}
       role="dialog"
       aria-modal={isVisible}
       aria-label={`${game.title} cabinet`}
       aria-hidden={!isVisible}
     >
+      {isPlay && (
+        <button
+          type="button"
+          className="game-window__exit"
+          aria-label="Exit fullscreen and return to Arcade"
+          onClick={exitPlayToArcade}
+        >
+          ×
+        </button>
+      )}
+
       <div className="game-window__frame">
-        <GameWindowHeader game={game} screenRef={screenRef} canFullscreen={playable} />
+        <GameWindowHeader
+          game={game}
+          canFullscreen={playable}
+          onFullscreen={enterPlayMode}
+        />
 
         <div
-          ref={screenRef}
           className={`game-window__screen${builtin ? ' game-window__screen--builtin' : ''}`}
         >
           {gated && minAge ? (
@@ -155,7 +169,7 @@ function GameWindowPanel({
           {gated
             ? 'Age verification required · Esc → Arcade'
             : playable
-              ? 'Esc → Arcade · Tabs to switch games · ⛶ Full Screen'
+              ? '⛶ Full Screen fills the device · × returns to Arcade'
               : 'Esc → Arcade · Game build not deployed yet'}
         </footer>
       </div>

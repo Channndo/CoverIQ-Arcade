@@ -102,12 +102,13 @@
 }
 
 .age-gate__input {
-  width: 3.4rem;
-  height: 2.6rem;
+  width: 3.6rem;
+  min-height: 2.75rem;
+  height: 2.75rem;
   padding: 0 0.35rem;
   text-align: center;
   font-family: var(--font-pixel);
-  font-size: 0.55rem;
+  font-size: 16px;
   color: var(--omni-text);
   background: #111118;
   border: 2px solid color-mix(in srgb, var(--gate-accent, #ffd700) 45%, #333);

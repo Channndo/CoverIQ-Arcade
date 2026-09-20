@@ -26,13 +26,15 @@ From CoverIQ local dev: [http://localhost:5173/arcade](http://localhost:5173/arc
 
 | Game | Slug | Notes |
 |------|------|--------|
-| **Car Planet** (flagship) | `car-planet` | Full game embedded from `public/games/car-planet/` |
+| **Policy Quest** (flagship) | `policy-quest` | Full game embedded from `public/games/policy-quest/` |
+| **Car Planet** | `car-planet` | Full game embedded from `public/games/car-planet/` |
+| **Auto World** | `auto-world` | Full game embedded from `public/games/auto-world/` (13+ DOB gate) |
 | Uninsured Mayhem | `uninsured-mayhem` | Highway dodge arcade (Car Planet-style pixels) |
 | Claim Chaos | `claim-chaos` | Dealership disaster claims |
 | Risk Rush | `risk-rush` | Lane reaction / risk timing |
 | Agent Mode | `agent-mode` | Walk the lot, sell policies |
 
-Click a card → cabinet opens. Use **D-pad + A/B** (or keyboard arrows + Z/Space). **Esc** returns to Arcade browse.
+Click a card → cabinet opens. Use **D-pad + A/B** (or keyboard arrows + Z/Space). **Full Screen** fills the device; **×** in the top-left returns to Arcade.
 
 ## Project structure
 

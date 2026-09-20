@@ -29,6 +29,13 @@ export type ArcadeStatsSnapshot = {
   stats: Record<string, number>;
 };
 
+export type ArcadePlayModeMessage = {
+  source: typeof ARCADE_MESSAGE_SOURCE;
+  type: 'play-mode';
+  v: typeof ARCADE_PROTOCOL_VERSION;
+  active: boolean;
+};
+
 export function isArcadeIdentity(data: unknown): data is ArcadeIdentityPayload {
   if (!data || typeof data !== 'object') return false;
   const msg = data as Partial<ArcadeIdentityPayload>;
@@ -39,6 +46,21 @@ export function isArcadeStatsSnapshot(data: unknown): data is ArcadeStatsSnapsho
   if (!data || typeof data !== 'object') return false;
   const msg = data as Partial<ArcadeStatsSnapshot>;
   return msg.source === ARCADE_MESSAGE_SOURCE && msg.type === 'stats-snapshot';
+}
+
+export function isArcadePlayMode(data: unknown): data is ArcadePlayModeMessage {
+  if (!data || typeof data !== 'object') return false;
+  const msg = data as Partial<ArcadePlayModeMessage>;
+  return msg.source === ARCADE_MESSAGE_SOURCE && msg.type === 'play-mode' && msg.v === ARCADE_PROTOCOL_VERSION;
+}
+
+export function playModeMessage(active: boolean): ArcadePlayModeMessage {
+  return {
+    source: ARCADE_MESSAGE_SOURCE,
+    type: 'play-mode',
+    v: ARCADE_PROTOCOL_VERSION,
+    active,
+  };
 }
 
 export function identityRequest(): ArcadeIdentityRequest {

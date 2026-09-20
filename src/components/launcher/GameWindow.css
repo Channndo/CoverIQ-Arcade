@@ -22,6 +22,58 @@
   opacity: 1;
 }
 
+.game-window--play {
+  inset: 0;
+  padding: 0;
+  z-index: 400;
+  background: #000;
+  backdrop-filter: none;
+}
+
+.game-window--play .game-window__frame {
+  max-width: none;
+  max-height: none;
+  height: 100%;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.game-window--play .game-window__header,
+.game-window--play .game-window__footer {
+  display: none;
+}
+
+.game-window--play .game-window__screen {
+  height: 100%;
+}
+
+.game-window__exit {
+  position: absolute;
+  top: max(10px, env(safe-area-inset-top, 0px));
+  left: max(10px, env(safe-area-inset-left, 0px));
+  z-index: 20;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #fff;
+  background: rgba(5, 5, 12, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 8px;
+  backdrop-filter: blur(6px);
+}
+
+.game-window__exit:hover {
+  color: #fff;
+  background: rgba(255, 45, 149, 0.35);
+  border-color: rgba(255, 45, 149, 0.7);
+}
+
 .game-window__frame {
   width: 100%;
   max-width: 1100px;
@@ -123,18 +175,23 @@
   display: block;
 }
 
-/* Full-screen: fill the whole display and center the game */
-.game-window__screen:fullscreen,
-.game-window__screen:-webkit-full-screen {
+.game-window:fullscreen,
+.game-window:-webkit-full-screen {
+  inset: 0;
   width: 100vw;
   height: 100vh;
+  max-height: none;
+  padding: 0;
   background: #000;
 }
 
-.game-window__screen:fullscreen > *,
-.game-window__screen:-webkit-full-screen > * {
-  width: 100%;
+.game-window:fullscreen .game-window__frame,
+.game-window:-webkit-full-screen .game-window__frame {
+  max-width: none;
+  max-height: none;
   height: 100%;
+  border: none;
+  border-radius: 0;
 }
 
 .game-window__placeholder {

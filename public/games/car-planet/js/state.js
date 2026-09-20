@@ -7,10 +7,11 @@ let currentMapKey = 'drive';
 let gameEvents = {
     firstCustomerTriggered: false, currentDay: 1, dailyWalkIn: false,
     dailyAptsCompleted: 0, dailyWalkInDone: false, timeMinutes: 420, tick: 0,
-    isAfterHours: false, carWaitingForRO: false,
+    isAfterHours: false, carWaitingForRO: false, pendingDispatch: false,
     pendingMikeOfficePage: false, mikeOfficePageActive: false,
     inWhitneyCheckInTutorial: false, whitneyCheckInTutorialDone: false,
     pendingRyanTour: false, pendingRyanDriveArrival: false, _mikeOfficeShoesTalk: false,
+    staffIntroTourActive: false, metStaffIds: [],
     ryanTourComplete: false, ryanMentorActive: false, ryanHintIndex: 0,
     storyTimeFrozen: false, driveIntercomTag: null,
     fredStoryPhase: 'idle', fredStoryComplete: false, fredStoryActive: false,
@@ -66,7 +67,8 @@ function defaultProbation() {
         weekRosCompleted: 0, currentWeek: 1,
         lastDayGrade: null, outcome: null,
         firedReason: null, finalReviewComplete: false,
-        storyEventDays: [], storyEventDaysUsed: [], storyEventsPlayedIds: []
+        storyEventDays: [], storyEventDaysUsed: [], storyEventsPlayedIds: [],
+        storyArcsDone: [], graduationShown: false
     };
 }
 
@@ -80,6 +82,7 @@ function migrateSaveData(s) {
         if (gameEvents.tick === undefined) gameEvents.tick = 0;
         if (gameEvents.isAfterHours === undefined) gameEvents.isAfterHours = false;
         if (gameEvents.carWaitingForRO === undefined) gameEvents.carWaitingForRO = false;
+        if (gameEvents.pendingDispatch === undefined) gameEvents.pendingDispatch = false;
         if (gameEvents.inDay2Meeting === undefined) gameEvents.inDay2Meeting = false;
         if (gameEvents.pendingDay2Meeting === undefined) gameEvents.pendingDay2Meeting = false;
         if (gameEvents.intradayWalkInRolled === undefined) gameEvents.intradayWalkInRolled = false;
@@ -103,6 +106,10 @@ function migrateSaveData(s) {
         if (gameEvents.ryanTourComplete === undefined) gameEvents.ryanTourComplete = false;
         if (gameEvents.ryanMentorActive === undefined) gameEvents.ryanMentorActive = false;
         if (gameEvents.ryanHintIndex === undefined) gameEvents.ryanHintIndex = 0;
+        if (gameEvents.staffIntroTourActive === undefined) {
+            gameEvents.staffIntroTourActive = !!(gameEvents.ryanTourComplete && questState && questState.step >= 7);
+        }
+        if (!gameEvents.metStaffIds) gameEvents.metStaffIds = [];
         if (gameEvents.storyTimeFrozen === undefined) gameEvents.storyTimeFrozen = false;
         if (gameEvents.driveIntercomTag === undefined) gameEvents.driveIntercomTag = null;
         if (gameEvents.fredStoryPhase === undefined) gameEvents.fredStoryPhase = 'idle';
@@ -112,6 +119,9 @@ function migrateSaveData(s) {
         if (gameEvents.fredStoryTimerPhase === undefined) gameEvents.fredStoryTimerPhase = null;
         if (gameEvents.fredStoryPaDoneForPhase === undefined) gameEvents.fredStoryPaDoneForPhase = null;
         if (gameEvents.fredNoonPing === undefined) gameEvents.fredNoonPing = false;
+        if (!gameEvents.dmsOrders) gameEvents.dmsOrders = [];
+        if (gameEvents.dmsActiveRoId === undefined) gameEvents.dmsActiveRoId = null;
+        if (gameEvents.storyArc === undefined) gameEvents.storyArc = null;
     }
     if (s.probation && !probation.metCustomerIds) probation.metCustomerIds = [];
     if (s.questState) questState = s.questState;
@@ -155,15 +165,17 @@ function resetGameStateForNewGame() {
     gameEvents = {
         firstCustomerTriggered: false, currentDay: 1, dailyWalkIn: false,
         dailyAptsCompleted: 0, dailyWalkInDone: false, timeMinutes: 420, tick: 0,
-        isAfterHours: false, carWaitingForRO: false,
+        isAfterHours: false, carWaitingForRO: false, pendingDispatch: false,
         pendingMikeOfficePage: false, mikeOfficePageActive: false,
         inWhitneyCheckInTutorial: false, whitneyCheckInTutorialDone: false,
         pendingRyanTour: false, pendingRyanDriveArrival: false, _mikeOfficeShoesTalk: false,
+    staffIntroTourActive: false, metStaffIds: [],
     ryanTourComplete: false, ryanMentorActive: false, ryanHintIndex: 0,
         storyTimeFrozen: false, driveIntercomTag: null,
         fredStoryPhase: 'idle', fredStoryComplete: false, fredStoryActive: false,
         fredStoryTimerUntil: null, fredStoryTimerPhase: null, fredStoryPaDoneForPhase: null,
-        fredNoonPing: false
+        fredNoonPing: false,
+        dmsOrders: [], dmsActiveRoId: null, storyArc: null
     };
     questState = { active: false, step: 0, talkedToMike: false, assignedTo: null, roNumber: 600000 };
     probation = defaultProbation();

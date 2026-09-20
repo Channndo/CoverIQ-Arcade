@@ -11,7 +11,7 @@ export function FeaturedGamesSection() {
       <div className="container">
         <SectionHeader
           title="Featured Arcade"
-          subtitle="Flagship worlds and headline titles from the Square1 Arcade universe — all launching soon."
+          subtitle="Policy Quest leads the shelf. Auto World and Car Planet stay on cabinets beside it."
         />
         <div className="games-grid">
           {games.map((game, i) => (

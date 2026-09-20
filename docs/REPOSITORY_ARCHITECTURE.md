@@ -18,7 +18,9 @@ This document defines the multi-repository structure for the omni.games ecosyste
 | `claim-chaos` | Claim Chaos | Survival Defense |
 | `risk-rush` | Risk Rush | Reaction Arcade |
 | `agent-mode` | Agent Mode | Tycoon Sim |
-| `car-planet` | Car Planet | Collection RPG (flagship) |
+| `policy-quest` | Policy Quest | Action Adventure (flagship) |
+| `car-planet` | Car Planet | Collection RPG |
+| `auto-world` | Auto World | Arcade Fighter |
 
 Each game repo should:
 

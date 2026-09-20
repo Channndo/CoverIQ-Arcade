@@ -60,8 +60,8 @@ export function HeroSection() {
           transition={{ delay: 0.9 }}
         >
           <div className="hero__stat">
-            <span className="hero__stat-value">5</span>
-            <span className="hero__stat-label">Worlds In Development</span>
+            <span className="hero__stat-value">3</span>
+            <span className="hero__stat-label">Playable Worlds</span>
           </div>
           <div className="hero__stat-divider" aria-hidden="true" />
           <div className="hero__stat">

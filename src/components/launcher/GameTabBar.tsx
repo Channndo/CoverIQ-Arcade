@@ -4,9 +4,9 @@ import { getGameBySlug } from '../../data/games';
 import './GameTabBar.css';
 
 export function GameTabBar() {
-  const { activeTab, openSlugs, focusHub, focusGame, closeGame } = useLauncher();
+  const { activeTab, openSlugs, focusHub, focusGame, closeGame, playMode } = useLauncher();
 
-  if (openSlugs.length === 0) return null;
+  if (openSlugs.length === 0 || playMode) return null;
 
   return (
     <div className="game-tab-bar" role="tablist" aria-label="Open games">

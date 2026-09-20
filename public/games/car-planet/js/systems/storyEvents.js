@@ -51,7 +51,10 @@ function pickStoryEventForToday() {
 function formatStoryLine(line) {
     let text = line.text
         .replace(/\[PLAYER_NAME\]/g, playerDetails.name)
-        .replace(/\[RIVAL_NAME\]/g, playerDetails.rivalName);
+        .replace(/\[RIVAL_NAME\]/g, playerDetails.rivalName)
+        .replace(/\[RO_PREV\]/g, String(questState.roNumber || 600000))
+        .replace(/\[STRIKES\]/g, String(probation.strikes || 0))
+        .replace(/\[CSI\]/g, String(probation.csiScore || 100));
     if (line.name === 'SYSTEM' || line.name === 'P.A.') {
         if (text.indexOf('[P.A.') === 0 || text.indexOf('[') === 0) return text;
         return text;
@@ -119,19 +122,33 @@ function applyDialogueSpeakerPortrait(line) {
     }
     const speakers = [
         'MIKE', 'WHITNEY', 'RYAN', 'ZACK', 'BRONSON', 'VINNIE', 'JOE', 'JAKE', 'ADAM',
-        'EJ', 'GUS', 'DAVE', 'JERRY', 'TROY', 'NICK', 'BRAD', 'JOHN', 'DAMONE'
+        'EJ', 'GUS', 'DAVE', 'JERRY', 'TROY', 'NICK', 'BRAD', 'JOHN', 'DAMONE', 'BRI',
+        'LITTLE MIKE', 'COOLANT JOE'
     ];
     for (let i = 0; i < speakers.length; i++) {
         const s = speakers[i];
         if (line.indexOf(s + ':') === 0) {
             dName.innerText = s;
-            drawPortrait(s);
+            if (s === 'LITTLE MIKE') drawStaffPortrait('LITTLE_MIKE');
+            else if (s === 'COOLANT JOE') drawStaffPortrait('COOLANT_JOE');
+            else drawStaffPortrait(s);
             return;
         }
     }
     if (line.indexOf(playerDetails.rivalName + ':') === 0 || line.indexOf('KASEY:') === 0) {
         dName.innerText = playerDetails.rivalName;
-        drawPortrait('RIVAL');
+        drawStaffPortrait('RIVAL');
+        return;
+    }
+    if (line.indexOf('FRED:') === 0 || line.indexOf('FRED NANDERS:') === 0) {
+        dName.innerText = 'FRED NANDERS';
+        drawPortrait('FRED_NANDERS');
+        return;
+    }
+    const driveGuest = typeof getDriveGuestNpc === 'function' ? getDriveGuestNpc() : null;
+    if (driveGuest && line.indexOf(driveGuest.name + ':') === 0) {
+        dName.innerText = driveGuest.name;
+        drawPortrait(driveGuest.charCode || 'CUSTOMER');
         return;
     }
     if (line.indexOf('SHIFT REPORT') === 0 || line.indexOf('FINAL PROBATION') === 0 || line.indexOf('Day ') === 0) {

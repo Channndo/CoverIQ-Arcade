@@ -34,6 +34,7 @@ function completeRyanIntro() {
     gameEvents.pendingRyanDriveArrival = false;
     gameEvents.ryanTourComplete = true;
     gameEvents.ryanMentorActive = true;
+    if (typeof beginStaffIntroTour === 'function') beginStaffIntroTour();
     if (gameEvents.timeMinutes > 660) gameEvents.timeMinutes = 540;
 }
 
@@ -53,11 +54,16 @@ function getRyanMentorHint() {
     if (s < 8) {
         if (s <= 1) return "Walk up to the customer's vehicle and check them in.";
         if (s === 2) return "Use your desk — CHECK IN — to write the RO.";
-        if (s === 3) return "Take the RO to Mike on the drive for dispatch.";
-        if (s === 4) return "Find the tech Mike assigned in the shop.";
+        if (s === 3) return "Take the RO to Mike, then Bronson in the shop.";
+        if (s === 4) return "Bronson's got the Explorer — confirm with him.";
         if (s === 5) return "Check your desk email. Mike wants you in his office.";
         if (s === 6) return "Mike's office is upstairs when you're ready.";
         if (s === 7) return "Look around the shop, parts, and drive before noon.";
+    }
+
+    if (typeof getActiveArcHint === 'function') {
+        const arcHint = getActiveArcHint();
+        if (arcHint) return arcHint;
     }
 
     if (gameEvents.currentDay === 2 && typeof isFredAppointmentActive === 'function' && isFredAppointmentActive()) {
@@ -72,6 +78,7 @@ function getRyanMentorHint() {
     if (s >= 8) {
         if (gameEvents.isAfterHours) return "End your shift at the desk when you're done.";
         if (gameEvents.carWaitingForRO) return "Finish the RO at your desk, then see Mike.";
+        if (gameEvents.pendingDispatch) return "Take that RO to Mike for dispatch.";
         if (gameEvents.dailyAptsCompleted < 3) {
             return "Next appointment — check in at the car, RO at desk, Mike dispatches.";
         }
