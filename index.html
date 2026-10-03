@@ -17,8 +17,31 @@
       rel="stylesheet"
     />
   </head>
-  <body>
-    <div id="root"></div>
+  <body style="background:#05050c">
+    <div id="root">
+      <p id="boot-status" style="margin:0;padding:40vh 24px 0;text-align:center;font:14px/1.5 -apple-system,system-ui,sans-serif;color:#7dd3fc">
+        Loading arcade…
+      </p>
+    </div>
+    <script>
+      (function () {
+        function show(msg) {
+          var el = document.getElementById("boot-status");
+          if (!el) return;
+          el.style.color = "#fca5a5";
+          el.textContent = "The arcade couldn't start on this device. " + msg;
+        }
+        window.addEventListener("error", function (e) {
+          show(e.message ? "(" + e.message + ")" : "(a file failed to load)");
+        }, true);
+        window.addEventListener("unhandledrejection", function (e) {
+          show("(" + String(e.reason && e.reason.message || e.reason) + ")");
+        });
+        setTimeout(function () {
+          show("Try refreshing, or turn off content blockers for this site.");
+        }, 12000);
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
