@@ -177,9 +177,10 @@
     font-size: 0.58rem;
   }
 
+  /* Stays at 16px: iOS Safari zooms the page when a focused input's text is smaller. */
   .age-gate__input {
-    width: 2.8rem;
-    height: 2.35rem;
-    font-size: 0.48rem;
+    width: 3.2rem;
+    height: 2.5rem;
+    padding: 0 0.2rem;
   }
 }
