@@ -737,8 +737,8 @@ canvas {
   cursor: pointer;
 }
 
-/* Mobile: Game Boy face — full screen width, top 50% screen / bottom 50% controls */
-@media (max-width: 799px) {
+/* Mobile: Game Boy face — full screen width, top 50% screen / bottom 50% controls. Touch-only screens (iPad) too. */
+@media (max-width: 799px), (hover: none) and (pointer: coarse) {
   #game-screen.control-board-screen-black,
   #game-screen.control-board-screen-grape,
   #game-screen.control-board-screen-teal,
@@ -972,7 +972,7 @@ canvas {
 }
 
 /* Desktop: keyboard play (arrows, Z/Enter = A, X/Shift = B, P = Start) */
-@media (min-width: 800px) {
+@media (min-width: 800px) and (hover: hover), (min-width: 800px) and (pointer: fine) {
   #controls {
     display: none;
   }
