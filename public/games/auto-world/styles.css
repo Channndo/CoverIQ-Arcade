@@ -457,7 +457,8 @@ button:active {
 #game-screen.control-board-screen-classic-gray { border-bottom-color: #6b6b5a; }
 
 /* Desktop: keyboard only. Touch-only screens (iPad) use the mobile layout at any width. */
-@media (min-width: 800px) and (hover: hover), (min-width: 800px) and (pointer: fine) {
+@media (min-width: 800px) {
+@media not all and (any-pointer: coarse) {
     #controls {
         display: none;
     }
@@ -487,9 +488,10 @@ button:active {
         width: 100%;
     }
 }
+}
 
 /* Mobile: Game Boy face — mirror Car Planet shell (gb-layout): block body + calc(100dvh − safe) */
-@media (max-width: 799px), (hover: none) and (pointer: coarse) {
+@media (max-width: 799px), (any-pointer: coarse) {
     html {
         width: 100%;
         height: 100%;
