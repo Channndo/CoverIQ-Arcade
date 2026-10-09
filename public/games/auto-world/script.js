@@ -1456,6 +1456,14 @@ function startStoryMode() {
     Music.stop();
 }
 
+function setCutsceneOpen(open) {
+    const screen = document.getElementById('cutscene-screen');
+    screen.classList.toggle('is-open', open);
+    screen.style.display = '';
+    document.documentElement.classList.toggle('aw-cutscene', open);
+    document.body.classList.toggle('aw-cutscene', open);
+}
+
 function showStoryScene() {
     if (storyIndex >= STORY_SCENES.length) {
         startGame();
@@ -1463,10 +1471,9 @@ function showStoryScene() {
     }
 
     const scene = STORY_SCENES[storyIndex];
-    const screen = document.getElementById('cutscene-screen');
     const portraitBox = document.getElementById('cs-portrait');
 
-    screen.style.display = 'flex';
+    setCutsceneOpen(true);
     document.getElementById('ui-layer').style.display = 'none';
     document.getElementById('cs-header').innerText = "PROLOGUE";
     document.getElementById('cs-name').innerText = scene.speaker;
@@ -1520,7 +1527,7 @@ function startLevel() {
 
     state = 'CUTSCENE';
     document.getElementById('cs-header').innerText = "NEXT TICKET";
-    document.getElementById('cutscene-screen').style.display = 'flex';
+    setCutsceneOpen(true);
     document.getElementById('ui-layer').style.display = 'none';
     document.getElementById('cs-name').innerText = data.name;
     document.getElementById('dialogue-box').innerText = data.text;
@@ -1533,7 +1540,7 @@ function nextText() {
         storyIndex++;
         showStoryScene();
     } else {
-        document.getElementById('cutscene-screen').style.display = 'none';
+        setCutsceneOpen(false);
         document.getElementById('ui-layer').style.display = 'block';
         document.getElementById('p2-name').innerText = ROSTER[level].name;
         updateHUD();
